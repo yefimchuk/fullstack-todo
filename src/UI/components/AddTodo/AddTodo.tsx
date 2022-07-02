@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './addtodo.scss';
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodos } from "../../../../BLL/todo/todo.slice";
-import { selectUserId } from "../../../../BLL/loginUser/loginUser.selector";
+import { addTodos } from "../../../BLL/todo/todo.slice";
+import { selectUserId } from "../../../BLL/loginUser/loginUser.selector";
 
 function    AddTodo() {
     const [addTodo, setAddTodo] = useState(true);

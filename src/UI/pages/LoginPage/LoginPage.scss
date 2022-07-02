@@ -1,3 +1,7 @@
+.btn {
+  border-radius: 5px;
+}
+
 .purple-text {
   color: #7d85b1 !important;
 }
@@ -8,11 +12,11 @@
   height: auto;
 
 
-
   .login-page {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+
     .input-value {
       color: #c9c9c9 !important;
     }

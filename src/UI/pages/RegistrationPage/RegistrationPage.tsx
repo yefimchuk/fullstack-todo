@@ -4,7 +4,7 @@ import "./RegistrationPage.scss";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegisterData } from "../../../BLL/registerUser/registerUser.slice";
-import Error from "../../Error/Error";
+import Error from "../../components/Error/Error";
 import { useNavigate } from "react-router-dom";
 import { selectErrors, selectStatus } from "../../../BLL/registerUser/registerUser.selector";
 
@@ -105,7 +105,7 @@ function RegistrationPage() {
 
             </form>
             {err && <Error error={err}/>}
-            {errors && <Error error={errors}/>}
+            {!err && errors && <Error error={errors}/>}
 
         </div>
     );

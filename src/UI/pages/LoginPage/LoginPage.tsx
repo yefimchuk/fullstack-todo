@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "../LoginPage/LoginPage.scss";
+import "./LoginPage.scss";
 import { useFormik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLoginData, login } from "../../../BLL/loginUser/loginUser.slice";
 import { selectErrors } from "../../../BLL/loginUser/loginUser.selector";
-import Error from "../../Error/Error";
+import Error from "../../components/Error/Error";
 
 function LoginPage() {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function LoginPage() {
 
                     <div className="row">
                         <div className="input-field col s12">
-                            <input className="validate input-value" type="email" name="email" id="email"
+                            <input className="validate input-value" type="email" name="email" id="email" required={true}
                                    defaultValue={formik.values.email}
                                    onChange={formik.handleChange}/>
                             <label htmlFor="email">Enter your email</label>

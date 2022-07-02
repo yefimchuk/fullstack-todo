@@ -1,7 +1,7 @@
 import React from 'react';
 import './todo.scss';
 import { useDispatch } from "react-redux";
-import { completeTodo, deleteTodo, importantTodo } from "../../../../BLL/todo/todo.slice";
+import { completeTodo, deleteTodo, importantTodo } from "../../../BLL/todo/todo.slice";
 
 function Todo({text, id, important, completed}: { text: string, id: number, important: string, completed: string }) {
     const dispatch = useDispatch();

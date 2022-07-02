@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import Navbar from "./UI/Navbar/Navbar";
+import Navbar from "./UI/pages/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { login } from "./BLL/loginUser/loginUser.slice";
 import { useDispatch, useSelector } from "react-redux";

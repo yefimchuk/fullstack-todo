@@ -62,17 +62,30 @@ export const todo = createSlice({
     name: "todo",
     initialState: {
         todos: null,
+        completedTodos: null,
         isFetching: true,
         deleteIsLoading: false,
+        isCompleted: false
     } as any,
     reducers: {},
     extraReducers: {
         [fetchTodos.pending]: (state, action) => {
-            state.isFetching = true;
+            state.isCompleted = true;
         },
         [fetchTodos.fulfilled]: (state, action) => {
-            state.todos = action.payload.data;
-            state.isFetching = false;
+
+            state.completedTodos = action.payload.data.filter((item: any,) => {
+                if (item.completed === true) {
+                    return item;
+                }
+            });
+            state.todos = action.payload.data.filter((item: any,) => {
+                if (item.completed === false) {
+                    return item;
+                }
+            });
+
+            state.isCompleted = false;
         },
         [fetchTodos.rejected]: (state, action) => {
             state.isFetching = false;
@@ -102,14 +115,17 @@ export const todo = createSlice({
             });
             state.isFetching = false;
         },
+        [completeTodo.pending]: (state, action) => {
 
+            state.isCompleted = true;
+        },
         [completeTodo.fulfilled]: (state, action) => {
             state.todos.map((item: any, index: number) => {
                 if (action.payload.data._id === item._id) {
                     state.todos[index] = action.payload.data;
                 }
             });
-            state.isFetching = false;
+            state.isCompleted = false;
         },
 
 
