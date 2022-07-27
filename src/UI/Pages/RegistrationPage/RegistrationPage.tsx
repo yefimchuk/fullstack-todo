@@ -1,12 +1,21 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./RegistrationPage.scss";
-import {useFormik} from "formik";
-import {useDispatch} from "react-redux";
-import {fetchRegisterData} from "../../../BLL/registerUser/registerUser.slice";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { fetchRegisterData } from "../../../BLL/registerUser/registerUser.slice";
 
 function RegistrationPage() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const errors: any = {};
+    const validatePassword = (values: { confirmPassword: string; password: string }) => {
+
+
+        if (values.confirmPassword !== values.password) {
+            errors.confirmPassword = 'Passwords do not match';
+        }
+        return errors;
+    };
     const formik = useFormik({
         initialValues: {
             userName: '',
@@ -16,12 +25,14 @@ function RegistrationPage() {
         },
         onSubmit: (values) => {
 
-            dispatch(fetchRegisterData(values))
+            dispatch(fetchRegisterData(values));
         },
+        validate: validatePassword
     });
 
     return (
         <div className="container">
+            <div>{errors.confirmPassword}</div>
             <form onSubmit={formik.handleSubmit}>
                 <div className="registration-page">
                     <div className="col s12">

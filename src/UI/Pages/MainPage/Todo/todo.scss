@@ -1,3 +1,34 @@
-.todo-container{
-    background-color: #484848;
+.todo-container {
+  margin-top: 5px;
+  display: flex;
+  border-radius: 5px;
+  height: 55px;
+  width: 82%;
+  justify-content: center;
+  align-items: center;
+  background-color: #323232;
+  transition: .1s linear;
+  &:hover{
+    background-color: #4b4b4b;
+  }
+
+  .todo-container__completed-circle {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #c6c6c6;
+    border-radius: 100%;
+
+  }
+  .todo-container_todo-name{
+    color: #c6c6c6;
+    width: 90%;
+    font-size: 18px;
+    padding-left: 15px;
+  }
+  .todo-container_important{
+    width: 10px;
+    height: 10px;
+    border: 2px solid #c6c6c6;
+    border-radius: 100%;
+  }
 }

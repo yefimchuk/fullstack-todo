@@ -1,41 +1,61 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import http from "../../service/http";
+import { useDispatch } from "react-redux";
 
-interface FetchDataType {
-  email: string;
-  password: number;
+export interface FetchDataType {
+    email: string;
+    password: number;
 }
 
-export const fetchRegisterData: any = createAsyncThunk(
-  "registerUser/registerUser",
-  async (values: FetchDataType, { rejectWithValue }) => {
-    try {
-      await http.register(values);
-    } catch (err) {
-      return rejectWithValue(err);
+export const fetchLoginData: any = createAsyncThunk(
+    "loginUser/registerUser",
+    async (values: FetchDataType, {rejectWithValue}) => {
+        try {
+            let res = await http.login(values);
+            return res?.data;
+        } catch (err) {
+            return rejectWithValue(err);
+        }
     }
-  }
 );
 
-export const registerUser = createSlice({
-  name: "registerUser",
-  initialState: {
-    todosData: [],
-    isFetching: true,
-  },
-  reducers: {},
-  extraReducers: {
-    [fetchRegisterData.pending]: (state, action) => {
-      state.isFetching = true;
+export const loginUser = createSlice({
+    name: "loginUser",
+    initialState: {
+        token: null,
+        id: null,
+        isFetching: true,
     },
-    [fetchRegisterData.fulfilled]: (state, action) => {
-      state.todosData = action.payload;
-      state.isFetching = false;
-    },
-    [fetchRegisterData.rejected]: (state, action) => {
-      state.isFetching = false;
-    },
-  },
-});
+    reducers: {
+        logout(state) {
+            state.token = null;
+            state.id = null;
+            localStorage.removeItem('userData')
+        },
+        login(state, action) {
 
-export default registerUser.reducer;
+            state.token =  action.payload.token
+            state.id = action.payload.userId
+        },
+
+    },
+    extraReducers: {
+        [fetchLoginData.pending]: (state, action) => {
+            state.isFetching = true;
+        },
+        [fetchLoginData.fulfilled]: (state, action) => {
+            state.token = action.payload.token;
+            state.id = action.payload.userId;
+            localStorage.setItem('userData', JSON.stringify({
+                userId: action.payload.userId,
+                token: action.payload.token
+            }));
+            state.isFetching = false;
+        },
+        [fetchLoginData.rejected]: (state, action) => {
+            state.isFetching = false;
+        },
+    },
+});
+export const {logout, login} = loginUser.actions
+export default loginUser.reducer;

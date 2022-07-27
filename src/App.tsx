@@ -1,21 +1,38 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import "./App.scss";
 import Navbar from "./UI/Navbar/Navbar";
-import LoginPage from "./UI/Pages/LoginPage/LoginPage";
-import RegistrationPage from "./UI/Pages/RegistrationPage/RegistrationPage";
-import {Route, Routes} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { login } from "./BLL/loginUser/loginUser.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectToken } from "./BLL/loginUser/loginUser.selector";
+import { useRoutes } from "./routes/routes";
 
 function App() {
+    const dispatch = useDispatch();
+    const isLogin = useSelector(selectToken);
+    const navigate = useNavigate();
+    const routes = useRoutes();
+    useEffect(() => {
+        try {
+            const data: { token: string, userId: string } = JSON.parse(localStorage.getItem("userData") || "");
+            if (data && data.token) {
+                const {token, userId} = data;
+                dispatch(login({token, userId}));
+            }
+
+
+        } catch (error) {
+
+        } finally {
+            isLogin ? navigate('/', {replace: true}) : navigate('login', {replace: true});
+        }
+
+
+    }, [isLogin]);
     return (
         <div className="app">
             <Navbar/>
-            <Routes>
-                <Route path="reg" element={ <RegistrationPage/>}/>
-                <Route path="/" element={ <LoginPage/>}/>
-
-
-            </Routes>
+            {routes}
 
         </div>
     );
