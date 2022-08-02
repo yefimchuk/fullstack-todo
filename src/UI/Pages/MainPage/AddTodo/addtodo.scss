@@ -1,12 +1,11 @@
 .add-todo_container {
   display: flex;
   margin: 20px;
-  border-radius: 5px;
-  height: 55px;
-  width: 82%;
-
+  min-height: 55px;
+  width: 89%;
   background-color: #323232;
   transition: .1s linear;
+  border-radius: 5px;
 
   &:hover {
     background-color: #4b4b4b;
@@ -37,15 +36,21 @@
   .add-todo_container_enable {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
 
     .add-todo_container__input {
+      height: 100%  ;
       margin-left: 20px;
       font-size: 18px;
       padding-left: 5px;
       color: #c2c2c2;
+
+      &:focus{
+        border-bottom: none!important;
+        box-shadow: none!important;
+      }
 
     }
   }

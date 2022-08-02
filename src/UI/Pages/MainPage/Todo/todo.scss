@@ -1,34 +1,91 @@
+.completed-hover {
+  background-color: #3c3c3c!important;
+}
+.hover-opacity{
+  opacity: 0;
+}
+.text-decoration {
+  text-decoration: line-through;
+  color: #8b8b8b!important;
+}
+.delete-none{
+  display: none;
+}
 .todo-container {
+  padding-left: 15px;
   margin-top: 5px;
   display: flex;
   border-radius: 5px;
-  height: 55px;
+  min-height: 55px;
   width: 82%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #323232;
   transition: .1s linear;
-  &:hover{
-    background-color: #4b4b4b;
+
+  &:hover {
+    background-color: #4b4b4b!important;
   }
 
   .todo-container__completed-circle {
-    width: 25px;
-    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 25px;
+    margin-left: 5px;
+    min-height: 25px;
     border: 2px solid #c6c6c6;
-    border-radius: 100%;
+    border-radius: 50%;
+    transition: .1s linear;
 
   }
-  .todo-container_todo-name{
+  .todo-container__completed-circle_empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 25px;
+    margin-left: 5px;
+    border-width: 0;
+    background-color: #7d85b1;
+    color: black!important;
+    min-height: 25px;
+    border-radius: 50%;
+    transition: .1s linear;
+
+  }
+
+
+  .hover-star {
+
+    color: #ffd739 !important;
+
+    &:hover {
+
+    }
+  }
+
+  .hover-scale {
+    width: 40px;
+transition: 0.1s linear;
+    &:hover {
+      font-size: 35px !important;
+    }
+  }
+
+  .todo-container_todo-name {
     color: #c6c6c6;
     width: 90%;
     font-size: 18px;
     padding-left: 15px;
   }
-  .todo-container_important{
-    width: 10px;
+
+  .todo-container_important {
+
+
     height: 10px;
     border: 2px solid #c6c6c6;
     border-radius: 100%;
   }
 }
+
+

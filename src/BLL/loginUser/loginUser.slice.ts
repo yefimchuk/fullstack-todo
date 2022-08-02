@@ -22,6 +22,7 @@ export const fetchLoginData: any = createAsyncThunk(
 export const loginUser = createSlice({
     name: "loginUser",
     initialState: {
+        errors: null,
         token: null,
         id: null,
         isFetching: true,
@@ -53,6 +54,7 @@ export const loginUser = createSlice({
             state.isFetching = false;
         },
         [fetchLoginData.rejected]: (state, action) => {
+            debugger
             state.isFetching = false;
         },
     },

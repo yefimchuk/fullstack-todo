@@ -27,7 +27,7 @@ function LoginPage() {
 
                     <div className="row">
                         <div className="input-field col s12">
-                            <input className="validate" type="email" name="email" id="email"
+                            <input className="validate input-value" type="email" name="email" id="email"
                                    defaultValue={formik.values.email}
                                    onChange={formik.handleChange}/>
                             <label htmlFor="email">Enter your email</label>
@@ -38,7 +38,8 @@ function LoginPage() {
                         <div className="input-field col s12">
                             <input
                                 className="validate"
-                                type="password"
+                                type="text"
+                                required={true}
                                 name="password"
                                 id="password"
                                 defaultValue={formik.values.password}
@@ -50,7 +51,7 @@ function LoginPage() {
                     <div className="row">
                         <button className="btn waves-effect waves-light" type="submit" name="action">Login
                         </button>
-                        <NavLink to="reg" className="btn-outline btn-reg no-reg">not registered?</NavLink>
+                        <NavLink to="/reg" className="btn-outline btn-reg no-reg">not registered?</NavLink>
                     </div>
                 </form>
             </div>

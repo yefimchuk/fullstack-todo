@@ -1,38 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./RegistrationPage.scss";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchRegisterData } from "../../../BLL/registerUser/registerUser.slice";
+import Error from "../../Error/Error";
+import { useNavigate } from "react-router-dom";
+import { selectErrors, selectStatus } from "../../../BLL/registerUser/registerUser.selector";
 
 function RegistrationPage() {
+    const errors = useSelector(selectErrors);
+
     const dispatch = useDispatch();
-    const errors: any = {};
-    const validatePassword = (values: { confirmPassword: string; password: string }) => {
-
-
-        if (values.confirmPassword !== values.password) {
-            errors.confirmPassword = 'Passwords do not match';
-        }
-        return errors;
-    };
+    const [err, setErr] = useState('');
+    const [status, setStatus] = useState(false);
+    const navigate = useNavigate();
+    if (status) {
+        navigate('/login', {replace: true});
+    }
     const formik = useFormik({
         initialValues: {
-            userName: '',
+
             email: '',
             password: '',
             confirmPassword: ''
         },
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
 
-            dispatch(fetchRegisterData(values));
+            if (values.confirmPassword === values.password) {
+                setErr('');
+                const res = await dispatch(fetchRegisterData(values));
+                res.payload.status === 201 && setStatus(true);
+            } else {
+                setErr('passwords do not match');
+
+            }
         },
-        validate: validatePassword
     });
 
     return (
         <div className="container">
-            <div>{errors.confirmPassword}</div>
             <form onSubmit={formik.handleSubmit}>
                 <div className="registration-page">
                     <div className="col s12">
@@ -41,21 +48,8 @@ function RegistrationPage() {
                             <div className="input-field col s12">
                                 <input
                                     className="validate"
-                                    id="userName"
-                                    name="userName"
-                                    type="text"
-                                    defaultValue={formik.values.userName}
-                                    onChange={formik.handleChange}
-
-                                />
-                                <label htmlFor="username">Enter your username</label>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s12">
-                                <input
-                                    className="validate"
                                     type="email"
+                                    required={true}
                                     name="email"
                                     id="email"
                                     defaultValue={formik.values.email}
@@ -71,6 +65,7 @@ function RegistrationPage() {
                                     className="validate"
                                     type="password"
                                     name="password"
+                                    required={true}
                                     id="password"
                                     defaultValue={formik.values.password}
                                     onChange={formik.handleChange}
@@ -80,6 +75,7 @@ function RegistrationPage() {
                             <div className="input-field col s12">
                                 <input
                                     className="validate"
+                                    required={true}
                                     type="password"
                                     name="confirmPassword"
                                     id="confirmPassword"
@@ -91,6 +87,7 @@ function RegistrationPage() {
                             </div>
                         </div>
                         <div className="row">
+
                             <button
                                 className="btn waves-effect waves-light"
                                 type="submit"
@@ -98,13 +95,18 @@ function RegistrationPage() {
                             >
                                 Registration
                             </button>
-                            <NavLink to="/" className="btn-outline btn-reg have-acc">
+                            <NavLink to="/login" className="btn-outline btn-reg have-acc">
                                 Already have account?
                             </NavLink>
                         </div>
+
                     </div>
                 </div>
+
             </form>
+            {err && <Error error={err}/>}
+            {errors && <Error error={errors}/>}
+
         </div>
     );
 }

@@ -3,18 +3,17 @@ import { FetchDataType } from "../BLL/loginUser/loginUser.slice";
 
 class Service {
     async register(values: any) {
-        await axios.post("/api/auth/registration", {...values}, {
+
+       return  await axios.post("http://localhost:8080/registration", {email: values.email, password: values.password}, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then((res: any) => {
-            return res;
-        }).catch(err => console.log(err));
+        })
     }
 
     async login(values: FetchDataType) {
 
-        return await axios.post("http://localhost:8080/login", {...values}, {}).catch(err => console.log(err));
+        return await axios.post("http://localhost:8080/login", {...values}, {});
     }
 
     async todos(userId: string) {
@@ -29,6 +28,20 @@ class Service {
         return await axios.post("http://localhost:8080/todo/add", {
             text, userId
         },).catch(err => console.log(err));
+    }
+
+    async deleteTodo(id: number) {
+        return await axios.delete("http://localhost:8080/todo/delete", {
+            params: {id}
+        },).catch(err => console.log(err));
+    }
+
+    async importantTodo(id: number) {
+        return await axios.put("http://localhost:8080/todo/important", {}, {params: {id}},).catch(err => console.log(err));
+    }
+
+    async completeTodo(id: number) {
+        return await axios.put("http://localhost:8080/todo/completed", {}, {params: {id}},).catch(err => console.log(err));
     }
 }
 

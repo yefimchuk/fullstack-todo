@@ -1,8 +1,50 @@
-.main-page{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+.main-page__container{
+  height: 10000px;
+  background-color: #2a2a2a;
+  .main-page {
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 650px;
+    background-color: #2a2a2a;
+    width: 100%;
+
+    .main-page__add-todo {
+      position: fixed;
+      height: 85px;
+      width: 95%;
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-page__todos {
+      display: flex;
+      margin-top: 90px;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #4d5257;
+      margin: 10px;
+      border-radius: 100px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      border: 1px solid lightgray;
+      border-left: 0;
+      border-right: 0;
+      background-color: #38404d;
+    }
+  }
 }
+

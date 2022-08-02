@@ -1,6 +1,31 @@
-.login-page{
-  text-align: center;
-  .no-reg{
-    padding-left: 10px;
+label {
+  color: #7d85b1 !important;
+
+}
+
+.container {
+
+  width: 100%;
+  height: auto;
+
+
+
+  .login-page {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    .input-value {
+      color: white !important;
+    }
+
+    text-align: center;
+
+    .no-reg {
+      padding-left: 10px;
+    }
   }
+}
+
+label {
+  width: 100%;
 }

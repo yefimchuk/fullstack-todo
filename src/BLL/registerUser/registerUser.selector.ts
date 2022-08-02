@@ -1,7 +1,11 @@
 
 import { createSelector } from "reselect";
 
-export const selectRegisrationData = createSelector(
+export const selectErrors = createSelector(
     (state: any) => state,
-    (state) => state.registerUser.todosData
+    (state) => state.registerUser.errors
+);
+export const selectStatus = createSelector(
+    (state: any) => state,
+    (state) => state.registerUser.status
 );
