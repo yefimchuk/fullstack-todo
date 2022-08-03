@@ -5,8 +5,6 @@ import { completeTodo, deleteTodo, importantTodo } from "../../../../BLL/todo/to
 
 function Todo({text, id, important, completed}: { text: string, id: number, important: string, completed: string }) {
     const dispatch = useDispatch();
-console.log(completed)
-
     return (
         <div className={`todo-container ${completed && 'completed-hover'}`}>
             <div className={`todo-container__completed-circle ${completed && 'todo-container__completed-circle_empty'}`} onClick={() => dispatch(completeTodo(id))}>

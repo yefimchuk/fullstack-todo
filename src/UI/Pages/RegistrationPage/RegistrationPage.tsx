@@ -43,11 +43,11 @@ function RegistrationPage() {
             <form onSubmit={formik.handleSubmit}>
                 <div className="registration-page">
                     <div className="col s12">
-                        <h3>Registration</h3>
+                        <h2 className="purple-text ">Registration</h2>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
-                                    className="validate"
+                                    className="validate purple-text"
                                     type="email"
                                     required={true}
                                     name="email"
@@ -62,7 +62,7 @@ function RegistrationPage() {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
-                                    className="validate"
+                                    className="validate purple-text"
                                     type="password"
                                     name="password"
                                     required={true}
@@ -74,7 +74,7 @@ function RegistrationPage() {
                             </div>
                             <div className="input-field col s12">
                                 <input
-                                    className="validate"
+                                    className="validate purple-text"
                                     required={true}
                                     type="password"
                                     name="confirmPassword"
@@ -89,13 +89,13 @@ function RegistrationPage() {
                         <div className="row">
 
                             <button
-                                className="btn waves-effect waves-light"
+                                className="btn waves-effect waves-light indigo text-lighten-3 "
                                 type="submit"
                                 name="action"
                             >
                                 Registration
                             </button>
-                            <NavLink to="/login" className="btn-outline btn-reg have-acc">
+                            <NavLink to="/login" className="btn-outline btn-reg have-acc indigo-text text-lighten-3 ">
                                 Already have account?
                             </NavLink>
                         </div>

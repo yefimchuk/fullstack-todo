@@ -31,6 +31,7 @@ export const loginUser = createSlice({
         logout(state) {
             state.token = null;
             state.id = null;
+            state.errors = null;
             localStorage.removeItem('userData')
         },
         login(state, action) {
@@ -54,7 +55,7 @@ export const loginUser = createSlice({
             state.isFetching = false;
         },
         [fetchLoginData.rejected]: (state, action) => {
-            debugger
+            state.errors =  action.payload.response.data.error
             state.isFetching = false;
         },
     },

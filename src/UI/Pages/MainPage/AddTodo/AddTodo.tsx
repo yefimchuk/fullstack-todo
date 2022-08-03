@@ -14,7 +14,6 @@ function    AddTodo() {
             text: '',
         },
         onSubmit: values => {
-
         },
     });
     return (

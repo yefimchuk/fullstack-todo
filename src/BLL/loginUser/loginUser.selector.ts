@@ -9,3 +9,7 @@ export const selectUserId = createSelector(
     (state: any) => state,
     (state) => state.loginUser.id
 );
+export const selectErrors = createSelector(
+    (state: any) => state,
+    (state) => state.loginUser.errors
+);
